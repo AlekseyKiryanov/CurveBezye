@@ -30,22 +30,20 @@ public class ProtoCurveController {
 
         canvas.setOnMouseClicked(event -> {
             switch (event.getButton()) {
-                case PRIMARY -> handlePrimaryClick(canvas.getGraphicsContext2D(), event);
+                case PRIMARY -> handlePrimaryClick(event);
             }
         });
     }
-
-    private void handlePrimaryClick(GraphicsContext graphicsContext, MouseEvent event) {
+    private void handlePrimaryClick(MouseEvent event) {
         final Point2D clickPoint = new Point2D(event.getX(), event.getY());
 
         painter.paintDot(clickPoint.getX(), clickPoint.getY(), Color.BLACK);
 
         if (points.size() > 0) {
             final Point2D lastPoint = points.get(points.size() - 1);
-            graphicsContext.strokeLine(lastPoint.getX(), lastPoint.getY(), clickPoint.getX(), clickPoint.getY());
+            painter.paintLine(lastPoint.getX(), lastPoint.getY(), clickPoint.getX(), clickPoint.getY(), Color.BLACK);
         }
         points.add(clickPoint);
     }
-
 
 }
