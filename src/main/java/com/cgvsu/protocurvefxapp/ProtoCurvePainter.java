@@ -1,8 +1,11 @@
 package com.cgvsu.protocurvefxapp;
 
+import javafx.geometry.Point2D;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
 
 public class ProtoCurvePainter {
 
@@ -24,6 +27,32 @@ public class ProtoCurvePainter {
                 pixelWriter.setColor(col, row, color);
     }
 
+    public void paintDot(Point2D p, Color color) {
+
+        int x = (int) p.getX();
+        int y = (int) p.getY();
+
+        final PixelWriter pixelWriter = graphicsContext.getPixelWriter();
+        int dotSize = 3;
+        for (int row = y - dotSize / 2 - 1; row < y + dotSize; ++row)
+            for (int col = x - dotSize / 2 - 1; col < x + dotSize; ++col)
+                pixelWriter.setColor(col, row, color);
+    }
+
+    public void clear(){
+       graphicsContext.clearRect(0,0,8000,6000);
+    }
+
+    public void paintBrokenLine(ArrayList<Point2D> points, Color color){
+        if (points.size()>1){
+            for (int i  = 1; i<points.size(); i++){
+                paintLine(points.get(i-1).getX(),points.get(i-1).getY(),points.get(i).getX(),points.get(i).getY(), color);
+                paintDot(points.get(i), color);
+            }
+            paintDot(points.get(0), color);
+        }
+
+    }
     public void paintLine(double a1, double b1, double a2, double b2, Color color) {
 
         boolean ishorizontal = Math.abs(a2 - a1) >= Math.abs(b2 - b1);
