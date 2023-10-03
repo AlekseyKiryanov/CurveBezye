@@ -39,20 +39,74 @@ public class ProtoCurvePainter {
                 pixelWriter.setColor(col, row, color);
     }
 
-    public void clear(){
-       graphicsContext.clearRect(0,0,8000,6000);
+    public void clear() {
+        graphicsContext.clearRect(0, 0, 8000, 6000);
     }
 
-    public void paintBrokenLine(ArrayList<Point2D> points, Color color){
-        if (points.size()>1){
-            for (int i  = 1; i<points.size(); i++){
-                paintLine(points.get(i-1).getX(),points.get(i-1).getY(),points.get(i).getX(),points.get(i).getY(), color);
+    public void paintBrokenLine(ArrayList<Point2D> points, Color color) {
+        if (points.size() > 1) {
+            for (int i = 1; i < points.size(); i++) {
+                paintLine(points.get(i - 1).getX(), points.get(i - 1).getY(), points.get(i).getX(), points.get(i).getY(), color);
                 paintDot(points.get(i), color);
             }
             paintDot(points.get(0), color);
         }
 
     }
+
+
+    public void paintLiteBrokenLine(ArrayList<Point2D> points, Color color) {
+        int l = points.size();
+        if (points.size() > 1) {
+            for (int i = 1; i < points.size(); i++) {
+                paintLine(points.get(i - 1).getX(), points.get(i - 1).getY(), points.get(i).getX(), points.get(i).getY(), color);
+            }
+        }
+
+    }
+
+
+    public void paintBezye(ArrayList<Point2D> Pk, Color color) {
+        int n = Pk.size() - 1;
+
+
+        ArrayList<Point2D> cn = new ArrayList<>();
+        for (int tt = 0; tt <= 120; tt += 1) {
+            double t = (double) tt / 120;
+
+            double a = 0;
+            double b = 0;
+
+            for (int k = 0; k <= n; k++) {
+                a = a + Pk.get(k).getX() * bknt(k, n, t);
+                b = b + Pk.get(k).getY() * bknt(k, n, t);
+            }
+            cn.add(new Point2D(a, b));
+        }
+
+        paintLiteBrokenLine(cn, color);
+
+    }
+
+    private double bknt(int k, int n, double t) {
+        double rez = (Ckn(k, n) * Math.pow(1 - t, n - k));
+        rez = rez * Math.pow(t, k);
+        return rez;
+    }
+
+    public static int Ckn(int k, int n) {
+        int rez = 1;
+        for (int i = k + 1; i <= n; i++) {
+            rez *= i;
+        }
+
+        for (int i = 1; i <= n - k; i++) {
+            rez /= i;
+        }
+
+        return rez;
+    }
+
     public void paintLine(double a1, double b1, double a2, double b2, Color color) {
 
         boolean ishorizontal = Math.abs(a2 - a1) >= Math.abs(b2 - b1);

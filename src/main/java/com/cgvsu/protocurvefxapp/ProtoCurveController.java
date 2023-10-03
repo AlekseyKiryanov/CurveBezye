@@ -46,6 +46,7 @@ public class ProtoCurveController {
         painter.clear();
         if (points.size() > 1) {
             painter.paintBrokenLine(points, Color.BLACK);
+            painter.paintBezye(points, Color.BLACK);
         } else if (points.size() == 1) {
             painter.paintDot(points.get(0), Color.BLACK);
         }
