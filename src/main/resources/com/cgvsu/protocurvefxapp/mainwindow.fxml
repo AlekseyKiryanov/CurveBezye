@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
 
-<AnchorPane fx:id="anchorPane" xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.cgvsu.protocurvefxapp.ProtoCurveController">
-    <Canvas fx:id="canvas" width="800" height="600" AnchorPane.topAnchor="30.0"/>
+<AnchorPane fx:id="anchorPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.cgvsu.protocurvefxapp.ProtoCurveController">
+    <Canvas fx:id="canvas" height="600" width="800" AnchorPane.topAnchor="30.0" />
+   <ColorPicker fx:id="start" layoutX="5.0" layoutY="5.0">
+      <value>
+         <Color />
+      </value>
+   </ColorPicker>
+   <ColorPicker fx:id="end" layoutX="130.0" layoutY="5.0" />
 </AnchorPane>

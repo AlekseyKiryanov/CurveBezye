@@ -55,18 +55,18 @@ public class ProtoCurvePainter {
     }
 
 
-    public void paintLiteBrokenLine(ArrayList<Point2D> points, Color color) {
+    public void paintLiteBrokenLine(ArrayList<Point2D> points, Color color1, Color color2) {
         int l = points.size();
         if (points.size() > 1) {
             for (int i = 1; i < points.size(); i++) {
-                paintLine(points.get(i - 1).getX(), points.get(i - 1).getY(), points.get(i).getX(), points.get(i).getY(), color);
+                paintLine(points.get(i - 1).getX(), points.get(i - 1).getY(), points.get(i).getX(), points.get(i).getY(), Color.color(color1.getRed()+ (color2.getRed()-color1.getRed())*i/l,color1.getGreen()+ (color2.getGreen()-color1.getGreen())*i/l,color1.getBlue()+ (color2.getBlue()-color1.getBlue())*i/l));
             }
         }
 
     }
 
 
-    public void paintBezye(ArrayList<Point2D> Pk, Color color) {
+    public void paintBezye(ArrayList<Point2D> Pk, Color color1, Color color2) {
         int n = Pk.size() - 1;
 
 
@@ -84,7 +84,7 @@ public class ProtoCurvePainter {
             cn.add(new Point2D(a, b));
         }
 
-        paintLiteBrokenLine(cn, color);
+        paintLiteBrokenLine(cn, color1, color2);
 
     }
 

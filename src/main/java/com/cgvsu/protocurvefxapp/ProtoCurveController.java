@@ -1,9 +1,12 @@
 package com.cgvsu.protocurvefxapp;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -16,6 +19,12 @@ public class ProtoCurveController {
     AnchorPane anchorPane;
     @FXML
     private Canvas canvas;
+
+     @FXML
+    private ColorPicker start;
+
+    @FXML
+    private ColorPicker end;
 
     private int workerDot = -1;
 
@@ -34,6 +43,20 @@ public class ProtoCurveController {
             switch (event.getButton()) {
                 case PRIMARY -> handlePrimaryClick(event);
                 case SECONDARY -> handleRightClick(event);
+            }
+        });
+
+        start.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                repaint();
+            }
+        });
+
+        end.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                repaint();
             }
         });
     }
@@ -83,11 +106,14 @@ public class ProtoCurveController {
     }
 
 
+
+
+
     private void repaint() {
         painter.clear();
         if (points.size() > 1) {
             painter.paintBrokenLine(points, Color.BLACK);
-            painter.paintBezye(points, Color.BLACK);
+            painter.paintBezye(points, start.getValue(), end.getValue());
         } else if (points.size() == 1) {
             painter.paintDot(points.get(0), Color.BLACK);
         }
