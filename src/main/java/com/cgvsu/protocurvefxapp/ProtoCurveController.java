@@ -132,6 +132,7 @@ public class ProtoCurveController {
                     painter.paintDot(points.get(i), Color.RED);
                     workerDot = i;
                 }
+                break;
 
             }
         }
