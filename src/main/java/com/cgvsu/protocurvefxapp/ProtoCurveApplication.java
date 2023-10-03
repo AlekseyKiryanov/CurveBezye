@@ -11,8 +11,8 @@ public class ProtoCurveApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(ProtoCurveApplication.class.getResource("mainwindow.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-        stage.setTitle("Proto Curve App");
+        Scene scene = new Scene(fxmlLoader.load(), 1920, 1080);
+        stage.setTitle("CurveBezye");
         stage.setScene(scene);
         stage.show();
     }

@@ -5,12 +5,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.paint.*?>
 
-<AnchorPane fx:id="anchorPane" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="com.cgvsu.protocurvefxapp.ProtoCurveController">
-    <Canvas fx:id="canvas" height="600" width="800" AnchorPane.topAnchor="30.0" />
+<AnchorPane fx:id="anchorPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.cgvsu.protocurvefxapp.ProtoCurveController">
+    <Canvas fx:id="canvas" height="1080.0" width="1920.0" AnchorPane.topAnchor="30.0" />
    <ColorPicker fx:id="start" layoutX="5.0" layoutY="5.0">
       <value>
          <Color />
       </value>
    </ColorPicker>
    <ColorPicker fx:id="end" layoutX="130.0" layoutY="5.0" />
+   <Button fx:id="clear" layoutX="255.0" layoutY="5.0" minWidth="125.0" text="Clear"/>
+   <Button fx:id="help" layoutX="380.0" layoutY="5.0" minWidth="125.0" text="Help"/>
 </AnchorPane>

@@ -6,7 +6,10 @@ import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -26,6 +29,11 @@ public class ProtoCurveController {
     @FXML
     private ColorPicker end;
 
+    @FXML
+    private Button clear;
+
+    @FXML
+    private Button help;
     private int workerDot = -1;
 
     ArrayList<Point2D> points = new ArrayList<Point2D>();
@@ -59,7 +67,27 @@ public class ProtoCurveController {
                 repaint();
             }
         });
+
+        clear.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                points.clear();
+                repaint();
+            }
+        });
+
+        help.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Помощь");
+                alert.setHeaderText("ЛКМ -> Построить точки ломаной\nПКМ -> Отметить точку для редактирования\nЛКМ -> Переместить выбранную точку\nAlt+ЛКМ -> Вставить точку левее выбранной\nAlt+ПКМ -> Удалить точку\nClear -> Очистить всё\nВыбор цвета -> Цвета начала и конца для градиентной заливки\nPS Если точек более 10 -> арифметическое переполнение и координаты обнуляются\nby ATr");
+                alert.show();
+            }
+        });
     }
+
+
 
     private void handlePrimaryClick(MouseEvent event) {
         final Point2D clickPoint = new Point2D(event.getX(), event.getY());
