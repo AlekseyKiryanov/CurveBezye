@@ -58,6 +58,9 @@ public class ProtoCurveController {
             @Override
             public void handle(ActionEvent event) {
                 repaint();
+                if (workerDot>0){
+                    painter.paintDot(points.get(workerDot), Color.RED);
+                }
             }
         });
 
@@ -65,6 +68,9 @@ public class ProtoCurveController {
             @Override
             public void handle(ActionEvent event) {
                 repaint();
+                if (workerDot>0){
+                    painter.paintDot(points.get(workerDot), Color.RED);
+                }
             }
         });
 
