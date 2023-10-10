@@ -37,8 +37,7 @@ public class ProtoCurvePainter {
         for (int row = y - dotSize / 2 - 1; row < y + dotSize; ++row)
             for (int col = x - dotSize / 2 - 1; col < x + dotSize; ++col)
                 pixelWriter.setColor(col, row, color);
-        System.out.println(Ckn(1,20));
-    }
+     }
 
     public void clear() {
         graphicsContext.clearRect(0, 0, 8000, 6000);

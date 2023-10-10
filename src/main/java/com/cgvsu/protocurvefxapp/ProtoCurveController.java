@@ -114,7 +114,6 @@ public class ProtoCurveController {
     }
 
     private void handleRightClick(MouseEvent event) {
-        System.out.println(event.getX() + " " + event.getY());
 
         if (workerDot >= 0) {
             repaint();
