@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 public class ProtoCurvePainter {
 
+    // (^_^)
+
     private final GraphicsContext graphicsContext;
 
     public ProtoCurvePainter(GraphicsContext graphicsContext) {
